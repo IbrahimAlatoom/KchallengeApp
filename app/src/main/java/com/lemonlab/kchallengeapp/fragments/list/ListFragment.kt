@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.lemonlab.kchallengeapp.R
+import kotlinx.android.synthetic.main.fragment_list.view.*
 
 
 class ListFragment : Fragment() {
@@ -20,7 +22,16 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_list, container, false)
+
+        view.floatingActionButton.setOnClickListener{
+            navigateToAdd()
+        }
+        return view
+    }
+
+    private fun navigateToAdd() {
+        findNavController().navigate(R.id.action_listFragment_to_addFragment)
     }
 
 }
