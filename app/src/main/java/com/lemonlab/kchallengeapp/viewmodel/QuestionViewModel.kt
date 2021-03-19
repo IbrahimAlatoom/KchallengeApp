@@ -25,4 +25,10 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
             repository.addQuestion(question)
         }
     }
+
+    fun updateQuestion(question: Question){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateQuestion(question)
+        }
+    }
 }

@@ -1,8 +1,11 @@
 package com.lemonlab.kchallengeapp.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "questions")
 data class Question(
 
@@ -15,4 +18,4 @@ data class Question(
     val answerThree : String,
     val answerFour : String,
     val answerIndex: Int
-)
+):Parcelable

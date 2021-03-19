@@ -3,6 +3,7 @@ package com.lemonlab.kchallengeapp.fragments.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.lemonlab.kchallengeapp.R
 import com.lemonlab.kchallengeapp.model.Question
@@ -25,6 +26,11 @@ class QuestionAdapter : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
         val currentItem = questionList[position]
         holder.itemView.id_text.text = currentItem.id.toString()
         holder.itemView.question_content.text = currentItem.questionText
+
+        holder.itemView.row_lay.setOnClickListener{
+            val action = ListFragmentDirections.actionListFragmentToUpdateFragment(currentItem)
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {
