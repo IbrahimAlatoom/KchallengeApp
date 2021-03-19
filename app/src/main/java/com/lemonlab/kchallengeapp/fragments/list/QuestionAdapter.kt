@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.lemonlab.kchallengeapp.R
-import com.lemonlab.kchallengeapp.data.Question
+import com.lemonlab.kchallengeapp.model.Question
 import kotlinx.android.synthetic.main.question_item.view.*
 
 class QuestionAdapter : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
@@ -34,4 +34,5 @@ class QuestionAdapter : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
         this.questionList = question
         notifyDataSetChanged()
     }
+
 }

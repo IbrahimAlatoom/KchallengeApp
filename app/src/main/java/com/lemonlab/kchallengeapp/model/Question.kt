@@ -1,4 +1,4 @@
-package com.lemonlab.kchallengeapp.data
+package com.lemonlab.kchallengeapp.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

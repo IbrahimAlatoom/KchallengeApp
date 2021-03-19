@@ -1,7 +1,6 @@
 package com.lemonlab.kchallengeapp.fragments.add
 
 import android.os.Bundle
-import android.text.Editable
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,8 +10,8 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.lemonlab.kchallengeapp.R
-import com.lemonlab.kchallengeapp.data.Question
-import com.lemonlab.kchallengeapp.data.QuestionViewModel
+import com.lemonlab.kchallengeapp.model.Question
+import com.lemonlab.kchallengeapp.viewmodel.QuestionViewModel
 import kotlinx.android.synthetic.main.fragment_add.*
 import kotlinx.android.synthetic.main.fragment_add.view.*
 
