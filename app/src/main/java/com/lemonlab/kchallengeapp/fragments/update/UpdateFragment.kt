@@ -1,11 +1,10 @@
 package com.lemonlab.kchallengeapp.fragments.update
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -45,6 +44,10 @@ class UpdateFragment : Fragment() {
         view.update_btn.setOnClickListener {
             updateItem()
         }
+
+
+//        show menu
+        setHasOptionsMenu(true)
         return view
     }
 
@@ -88,4 +91,30 @@ class UpdateFragment : Fragment() {
                 && TextUtils.isEmpty(answerTwo))
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(item.itemId == R.id.menu_delete){
+            deleteQuestion()
+        }
+
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteQuestion() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("Yes"){ _,_ ->
+            questionViewModel.deleteQuestion(args.currentQuestion)
+            Toast.makeText(requireContext(), "Successfully Deleted!", Toast.LENGTH_LONG).show()
+            findNavController().navigate(R.id.action_updateFragment_to_listFragment)
+        }
+        builder.setNegativeButton("No"){_,_ ->}
+        builder.setTitle("Delete ${args.currentQuestion.questionText} ?")
+        builder.setMessage("Are you Sure Do you Want To Delete Question ?")
+        builder.create().show()
+    }
 }
