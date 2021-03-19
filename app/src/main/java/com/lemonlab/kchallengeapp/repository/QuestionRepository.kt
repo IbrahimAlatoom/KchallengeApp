@@ -15,4 +15,8 @@ class QuestionRepository(private val questionDao: QuestionDao) {
     suspend fun updateQuestion(question: Question){
         questionDao.updateQuestion(question)
     }
+
+    suspend fun deleteQuestion(question: Question){
+        questionDao.deleteQuestion(question)
+    }
 }

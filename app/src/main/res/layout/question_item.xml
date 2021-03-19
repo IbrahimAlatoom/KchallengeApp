@@ -47,7 +47,6 @@
                     tools:text="Question Content" />
 
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

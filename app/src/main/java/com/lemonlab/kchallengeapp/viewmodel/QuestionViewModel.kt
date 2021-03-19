@@ -31,4 +31,10 @@ class QuestionViewModel(application: Application) : AndroidViewModel(application
             repository.updateQuestion(question)
         }
     }
+
+    fun deleteQuestion(question: Question){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteQuestion(question)
+        }
+    }
 }

@@ -14,7 +14,10 @@ interface QuestionDao {
     @Update
     suspend fun updateQuestion(question: Question)
 
+    @Delete
+    suspend fun deleteQuestion(question: Question)
 
     @Query("SELECT * FROM questions ORDER BY id ASC")
     fun readAllData():LiveData<List<Question>>
+
 }
