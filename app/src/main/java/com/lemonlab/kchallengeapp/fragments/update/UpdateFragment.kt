@@ -34,13 +34,16 @@ class UpdateFragment : Fragment() {
 
         questionViewModel = ViewModelProvider(this).get(QuestionViewModel::class.java)
 
+        val listOfCategory = resources.getStringArray(R.array.categoryItems)
+        val listOfAnswer = resources.getStringArray(R.array.AnswerItems)
+
         view.update_question_text_et.setText(args.currentQuestion.questionText)
         view.update_answer_1_et.setText(args.currentQuestion.answerOne)
         view.update_answer_2_et.setText(args.currentQuestion.answerTwo)
         view.update_answer_3_et.setText(args.currentQuestion.answerThree)
         view.update_answer_4_et.setText(args.currentQuestion.answerFour)
-//        view.update_category_spin
-
+        view.update_category_spin.setSelection(listOfCategory.indexOf(args.currentQuestion.category))
+        view.update_correct_answer_spin.setSelection(listOfAnswer.indexOf(args.currentQuestion.answerIndex.toString()))
         view.update_btn.setOnClickListener {
             updateItem()
         }
@@ -73,7 +76,7 @@ class UpdateFragment : Fragment() {
             )
             questionViewModel.updateQuestion(updatedQuestion)
 
-            Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), "Successfully Updated!", Toast.LENGTH_LONG).show()
 
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         } else {
@@ -92,12 +95,12 @@ class UpdateFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu,menu)
+        inflater.inflate(R.menu.menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if(item.itemId == R.id.menu_delete){
+        if (item.itemId == R.id.menu_delete) {
             deleteQuestion()
         }
 
@@ -107,12 +110,12 @@ class UpdateFragment : Fragment() {
 
     private fun deleteQuestion() {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes"){ _,_ ->
+        builder.setPositiveButton("Yes") { _, _ ->
             questionViewModel.deleteQuestion(args.currentQuestion)
             Toast.makeText(requireContext(), "Successfully Deleted!", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         }
-        builder.setNegativeButton("No"){_,_ ->}
+        builder.setNegativeButton("No") { _, _ -> }
         builder.setTitle("Delete ${args.currentQuestion.questionText} ?")
         builder.setMessage("Are you Sure Do you Want To Delete Question ?")
         builder.create().show()
