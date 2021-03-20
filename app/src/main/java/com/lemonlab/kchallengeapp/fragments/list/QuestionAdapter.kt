@@ -36,6 +36,7 @@ class QuestionAdapter : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
     override fun getItemCount(): Int {
         return questionList.size
     }
+
     fun setData(question: List<Question>){
         this.questionList = question
         notifyDataSetChanged()

@@ -1,7 +1,9 @@
 package com.lemonlab.kchallengeapp.fragments.list
 
 import android.os.Bundle
+import android.os.Debug
 import android.os.Environment
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -47,11 +49,12 @@ class ListFragment : Fragment() {
             adapter.setData(it)
         }
 
-
-
-
         view.floatingActionButton.setOnClickListener {
             navigateToAdd()
+        }
+
+        view.floatingActionButtonExtract.setOnClickListener {
+            extractDataToJsonFile()
         }
 
         return view
@@ -61,16 +64,14 @@ class ListFragment : Fragment() {
         findNavController().navigate(R.id.action_listFragment_to_addFragment)
     }
 
-    private fun ToJson() {
-        val path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-        val myFile = File(path,"data.json")
-        val fileOut = FileOutputStream(myFile,true)
-        val writer = OutputStreamWriter(fileOut)
+    private fun extractDataToJsonFile() {
+        val path = requireContext().filesDir;
+        val myFile = File(path, "data.json")
+        val fileOut = FileOutputStream(myFile)
         val gson = Gson()
-        questionViewModel.readAllData.observe(viewLifecycleOwner){
-            var json = gson.toJson(it,writer)
+        questionViewModel.readAllData.observe(viewLifecycleOwner) {
+            val json = gson.toJson(it)
+            fileOut.write(json.toByteArray())
         }
-
     }
-
 }
