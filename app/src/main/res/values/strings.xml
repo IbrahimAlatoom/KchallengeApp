@@ -6,10 +6,15 @@
     <string name="add_fourth_answer">Add Fourth Answer</string>
 
     <string-array name="categoryItems">
+        <item>religious</item>
         <item>Math</item>
         <item>Science</item>
         <item>General</item>
         <item>History</item>
+        <item>Sport</item>
+        <item>Computer</item>
+        <item>Politician</item>
+        <item>Economie</item>
     </string-array>
     <string-array name="AnswerItems">
         <item>1</item>

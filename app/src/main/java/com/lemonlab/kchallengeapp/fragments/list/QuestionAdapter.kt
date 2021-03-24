@@ -24,7 +24,7 @@ class QuestionAdapter : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = questionList[position]
-        holder.itemView.id_text.text = currentItem.id.toString()
+        holder.itemView.id_text.text = position.toString()
         holder.itemView.question_content.text = currentItem.questionText
 
         holder.itemView.row_lay.setOnClickListener{
